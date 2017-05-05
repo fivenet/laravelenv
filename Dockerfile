@@ -57,13 +57,22 @@ RUN mkdir /project && \
     composer global require "hirak/prestissimo:^0.3" && \
     composer global require "laravel/installer"
 
+RUN curl -o /tmp/pma.zip https://files.phpmyadmin.net/phpMyAdmin/4.7.0/phpMyAdmin-4.7.0-english.zip && \
+    unzip /tmp/pma.zip -d /var/www/ && \
+    mv /var/www/phpMyAdmin-4.7.0-english /var/www/phpmyadmin && \
+    chmod 755 /var/www/phpmyadmin -R && \
+    rm /tmp/pma.zip
+
+COPY files/pma.conf /etc/apache2/conf-available/pma.conf
+COPY files/pma.config.inc.php /var/www/phpmyadmin/config.inc.php
 COPY files/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY files/envvars /etc/apache2/envvars
 COPY files/xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
 COPY files/start.sh /start.sh
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-RUN chmod +x /start.sh && \
+RUN a2enconf pma.conf && \
+    chmod +x /start.sh && \
     mkdir -p /run/php && \
     chmod 777 /run/php && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
