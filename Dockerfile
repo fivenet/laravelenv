@@ -76,7 +76,8 @@ RUN a2enconf pma.conf && \
     mkdir -p /run/php && \
     chmod 777 /run/php && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
-    echo "include=/dev/shm/fpm-user.conf" >> /etc/php/7.1/fpm/pool.d/www.conf
+    echo "include=/dev/shm/fpm-user.conf" >> /etc/php/7.1/fpm/pool.d/www.conf && \
+    echo "clear_env = no" >> /etc/php/7.1/fpm/pool.d/www.conf
 
 EXPOSE 80
 

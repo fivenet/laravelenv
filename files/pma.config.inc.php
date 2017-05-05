@@ -28,9 +28,9 @@ $i++;
 /* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'config';
 /* Server parameters */
-$cfg['Servers'][$i]['host'] = $_ENV['PMA_HOST'];
-$cfg['Servers'][$i]['user'] = $_ENV['PMA_USER'];
-$cfg['Servers'][$i]['password'] = $_ENV['PMA_PASSWORD'];
+$cfg['Servers'][$i]['host'] = $_SERVER['PMA_HOST'];
+$cfg['Servers'][$i]['user'] = $_SERVER['PMA_USER'];
+$cfg['Servers'][$i]['password'] = $_SERVER['PMA_PASSWORD'];
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
 
