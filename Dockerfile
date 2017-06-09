@@ -35,6 +35,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     php7.1-mysql \
     php7.1-fpm \
     php7.1-sqlite3 \
+    php7.1-bcmath \
     php-xdebug \
     php-redis \
     mysql-client \
@@ -82,5 +83,7 @@ RUN a2enconf pma.conf && \
 EXPOSE 80
 
 WORKDIR /project
+
+ENV HOME=/tmp
 
 CMD ["/usr/bin/supervisord"]
