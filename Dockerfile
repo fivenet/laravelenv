@@ -71,6 +71,7 @@ COPY files/envvars /etc/apache2/envvars
 COPY files/xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
 COPY files/start.sh /start.sh
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY files/php.ini /etc/php/7.1/fpm/php.ini
 
 RUN a2enconf pma.conf && \
     chmod +x /start.sh && \
