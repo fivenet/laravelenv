@@ -36,6 +36,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     php7.1-fpm \
     php7.1-sqlite3 \
     php7.1-bcmath \
+    php7.1-intl \
     php-xdebug \
     php-redis \
     mysql-client \
