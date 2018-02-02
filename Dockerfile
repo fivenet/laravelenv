@@ -23,20 +23,20 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     apache2 \
     libapache2-mod-rpaf \
     libapache2-mod-fastcgi \
-    php7.1-cli \
-    php7.1-mbstring \
-    php7.1-xml \
-    php7.1-soap \
-    php7.1-curl \
-    php7.1-mcrypt \
-    php7.1-gd \
-    php7.1-bz2 \
-    php7.1-zip \
-    php7.1-mysql \
-    php7.1-fpm \
-    php7.1-sqlite3 \
-    php7.1-bcmath \
-    php7.1-intl \
+    php7.2-cli \
+    php7.2-mbstring \
+    php7.2-xml \
+    php7.2-soap \
+    php7.2-curl \
+    php7.2-mcrypt \
+    php7.2-gd \
+    php7.2-bz2 \
+    php7.2-zip \
+    php7.2-mysql \
+    php7.2-fpm \
+    php7.2-sqlite3 \
+    php7.2-bcmath \
+    php7.2-intl \
     php-xdebug \
     php-redis \
     mysql-client \
@@ -69,18 +69,18 @@ COPY files/pma.conf /etc/apache2/conf-available/pma.conf
 COPY files/pma.config.inc.php /var/www/phpmyadmin/config.inc.php
 COPY files/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY files/envvars /etc/apache2/envvars
-COPY files/xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
+COPY files/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
 COPY files/start.sh /start.sh
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY files/php.ini /etc/php/7.1/fpm/php.ini
+COPY files/php.ini /etc/php/7.2/fpm/php.ini
 
 RUN a2enconf pma.conf && \
     chmod +x /start.sh && \
     mkdir -p /run/php && \
     chmod 777 /run/php && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
-    echo "include=/dev/shm/fpm-user.conf" >> /etc/php/7.1/fpm/pool.d/www.conf && \
-    echo "clear_env = no" >> /etc/php/7.1/fpm/pool.d/www.conf
+    echo "include=/dev/shm/fpm-user.conf" >> /etc/php/7.2/fpm/pool.d/www.conf && \
+    echo "clear_env = no" >> /etc/php/7.2/fpm/pool.d/www.conf
 
 EXPOSE 80
 
