@@ -28,7 +28,6 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     php7.2-xml \
     php7.2-soap \
     php7.2-curl \
-    php7.2-mcrypt \
     php7.2-gd \
     php7.2-bz2 \
     php7.2-zip \
