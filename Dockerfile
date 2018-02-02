@@ -23,6 +23,7 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     apache2 \
     libapache2-mod-rpaf \
     libapache2-mod-fastcgi \
+    libpcre3 \
     php7.2-cli \
     php7.2-mbstring \
     php7.2-xml \
