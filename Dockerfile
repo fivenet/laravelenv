@@ -64,14 +64,7 @@ RUN curl -o /tmp/pma.zip https://files.phpmyadmin.net/phpMyAdmin/4.7.0/phpMyAdmi
     chmod 755 /var/www/phpmyadmin -R && \
     rm /tmp/pma.zip
 
-COPY files/pma.conf /etc/apache2/conf-available/pma.conf
-COPY files/pma.config.inc.php /var/www/phpmyadmin/config.inc.php
-COPY files/000-default.conf /etc/apache2/sites-available/000-default.conf
-COPY files/envvars /etc/apache2/envvars
-COPY files/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
-COPY files/start.sh /start.sh
-COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY files/php.ini /etc/php/7.2/fpm/php.ini
+COPY files/ /
 
 RUN a2enconf pma.conf && \
     chmod +x /start.sh && \
@@ -88,3 +81,5 @@ WORKDIR /project
 ENV HOME=/tmp
 
 CMD ["/usr/bin/supervisord"]
+
+HEALTHCHECK --interval=5s --timeout=5s --start-period=120s CMD curl -X OPTIONS --fail http://localhost:80/ || exit 1
