@@ -12,4 +12,4 @@ else
 fi
 echo "listen.mode = 0666" >> /dev/shm/fpm-user.conf
 
-/usr/sbin/php-fpm7.1 -F
+/usr/sbin/php-fpm7.2 -F
