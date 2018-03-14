@@ -14,8 +14,7 @@ RUN apt-get update && \
 RUN LC_ALL=C.UTF-8 add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) multiverse"
 
 # php
-RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
-    apt-get update && \
+RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
     git \
     unzip \
@@ -23,22 +22,17 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     apache2 \
     libapache2-mod-rpaf \
     libapache2-mod-fastcgi \
-    php7.1-cli \
-    php7.1-mbstring \
-    php7.1-xml \
-    php7.1-soap \
-    php7.1-curl \
-    php7.1-mcrypt \
-    php7.1-gd \
-    php7.1-bz2 \
-    php7.1-zip \
-    php7.1-mysql \
-    php7.1-fpm \
-    php7.1-sqlite3 \
-    php7.1-bcmath \
-    php7.1-intl \
-    php-xdebug \
-    php-redis \
+    php5-cli \
+    php-soap \
+    php5-curl \
+    php5-mcrypt \
+    php5-gd \
+    php5-mysql \
+    php5-fpm \
+    php5-sqlite \
+    php5-intl \
+    php5-xdebug \
+    php5-redis \
     mysql-client \
     && \
     apt-get clean && \
@@ -53,11 +47,8 @@ RUN a2enmod rewrite && \
     a2disconf other-vhosts-access-log
 
 RUN mkdir /project && \
-    phpdismod opcache && \
     curl -o /usr/local/bin/composer https://getcomposer.org/composer.phar && \
-    chmod +x /usr/local/bin/composer && \
-    composer global require "hirak/prestissimo:^0.3" && \
-    composer global require "laravel/installer"
+    chmod +x /usr/local/bin/composer
 
 RUN curl -o /tmp/pma.zip https://files.phpmyadmin.net/phpMyAdmin/4.7.0/phpMyAdmin-4.7.0-english.zip && \
     unzip /tmp/pma.zip -d /var/www/ && \
@@ -72,8 +63,9 @@ RUN a2enconf pma.conf && \
     mkdir -p /run/php && \
     chmod 777 /run/php && \
     echo "ServerName localhost" >> /etc/apache2/apache2.conf && \
-    echo "include=/dev/shm/fpm-user.conf" >> /etc/php/7.1/fpm/pool.d/www.conf && \
-    echo "clear_env = no" >> /etc/php/7.1/fpm/pool.d/www.conf
+    echo "include=/dev/shm/fpm-user.conf" >> /etc/php5/fpm/pool.d/www.conf && \
+    ln -s /etc/php5/mods-available/mcrypt.ini /etc/php5/fpm/conf.d/20-mcrypt.ini && \
+    ln -s /etc/php5/mods-available/mcrypt.ini /etc/php5/cli/conf.d/20-mcrypt.ini
 
 EXPOSE 80
 

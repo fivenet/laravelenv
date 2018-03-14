@@ -13,8 +13,8 @@ fi
 echo "listen.mode = 0666" >> /dev/shm/fpm-user.conf
 
 if [ -f /project/php.ini ]; then
-  cp /project/php.ini /etc/php/7.1/cli/conf.d/user.ini
-  cp /project/php.ini /etc/php/7.1/fpm/conf.d/user.ini
+  cp /project/php.ini /etc/php5/cli/conf.d/user.ini
+  cp /project/php.ini /etc/php5/fpm/conf.d/user.ini
 fi
 
-/usr/sbin/php-fpm7.1 -F
+/usr/sbin/php5-fpm -F
