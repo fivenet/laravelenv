@@ -47,3 +47,5 @@ APACHE_ULIMIT_MAX_FILES='ulimit -n 65536'
 ## This will produce a verbose output on package installations of web server modules and web application
 ## installations which interact with Apache
 #export APACHE2_MAINTSCRIPT_DEBUG=1
+
+export DEVELOPMENT=1

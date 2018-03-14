@@ -73,6 +73,8 @@ WORKDIR /project
 
 ENV HOME=/tmp
 
+ENV DEVELOPMENT=1
+
 CMD ["/usr/bin/supervisord"]
 
 HEALTHCHECK --interval=5s --timeout=5s --start-period=120s CMD curl -X OPTIONS --fail http://localhost:80/ || exit 1
