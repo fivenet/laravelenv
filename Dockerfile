@@ -42,7 +42,9 @@ RUN LC_ALL=C.UTF-8 add-apt-repository -y ppa:ondrej/php && \
     mysql-client \
     && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    locale-gen hu_HU.UTF-8 && \
+    update-locale
 
 RUN a2enmod rewrite && \
     a2enmod rpaf && \
